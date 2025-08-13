@@ -1,0 +1,34 @@
+---
+- name: Hello World Learning Playbook
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Display welcome message
+      debug:
+        msg: "🎉 Hello from my Git-based Ansible project! Running on {{ inventory_hostname }}"
+    
+    - name: Show current date and time
+      debug:
+        msg: "⏰ Current time: {{ ansible_date_time.iso8601 }}"
+    
+    - name: Display system information
+      debug:
+        msg: "💻 System: {{ ansible_os_family }} {{ ansible_distribution }} {{ ansible_distribution_version }}"
+    
+    - name: Show memory information
+      debug:
+        msg: "🧠 Memory: {{ ansible_memtotal_mb }} MB total"
+    
+    - name: Show project directory
+      debug:
+        msg: "📁 AWX Project path: {{ playbook_dir }}"
+    
+    - name: List files in project directory
+      find:
+        paths: "{{ playbook_dir }}"
+        file_type: file
+      register: project_files
+    
+    - name: Show all files in project
+      debug:
+        msg: "📄 Files in project: {{ project_files.files | map(attribute='path') | list }}"
