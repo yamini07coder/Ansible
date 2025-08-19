@@ -1,6 +1,6 @@
 ---
 - name: Hello World Learning Playbook
-  hosts: all
+  hosts: localhost
   gather_facts: yes
   tasks:
     - name: Display welcome message
